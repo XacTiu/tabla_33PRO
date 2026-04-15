@@ -226,6 +226,28 @@ body>*{position:relative;z-index:1}
 @keyframes calcFade{from{opacity:0}to{opacity:1}}
 @keyframes flicker{0%,100%{opacity:1}50%{opacity:.7}}
 
+/* ═══ WELCOME POPUP ═══ */
+#welcomePopup{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:6000;display:none;align-items:center;justify-content:center;padding:1.5rem;overflow-y:auto}
+#welcomePopup.show{display:flex;animation:calcFade .4s ease}
+.wp-box{max-width:480px;width:100%;background:#050505;border:1px solid rgba(34,211,145,.22);border-radius:20px;padding:2rem 1.8rem 1.8rem;position:relative;box-shadow:0 0 60px rgba(34,211,145,.1),0 0 120px rgba(255,77,143,.05)}
+.wp-box::before{content:'';position:absolute;inset:0;border-radius:20px;background:radial-gradient(ellipse 70% 40% at 50% 0%,rgba(34,211,145,.07),transparent 60%);pointer-events:none}
+.wp-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(26px,7vw,36px);letter-spacing:.2em;text-transform:uppercase;color:var(--green);text-shadow:0 0 30px rgba(34,211,145,.6);margin-bottom:.5rem;line-height:1;position:relative}
+.wp-sub{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;position:relative}
+.wp-sep{height:2px;background:linear-gradient(90deg,transparent,var(--green),var(--sugar),transparent);border-radius:2px;box-shadow:0 0 12px rgba(34,211,145,.35);margin-bottom:1.4rem}
+.wp-quote{font-family:'Barlow',sans-serif;font-size:14px;line-height:1.65;color:#aaa;margin-bottom:1.5rem;text-align:center;position:relative}
+.wp-section-label{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--green);margin-bottom:.9rem;opacity:.75;position:relative}
+.wp-points{display:flex;flex-direction:column;gap:.9rem;margin-bottom:1.5rem;position:relative}
+.wp-point{display:flex;gap:.75rem;align-items:flex-start}
+.wp-arrow{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:17px;color:var(--green);text-shadow:0 0 10px rgba(34,211,145,.5);flex-shrink:0;line-height:1.5;margin-top:.05em}
+.wp-point-text{font-family:'Barlow',sans-serif;font-size:13px;line-height:1.65;color:#b0b0b0}
+.wp-point-text b{color:#e8e8e8;font-weight:700}
+.wp-final{font-family:'Barlow',sans-serif;font-style:italic;font-size:12px;color:var(--dim);text-align:center;margin-bottom:1.6rem;letter-spacing:.03em;position:relative}
+.wp-btn{width:100%;padding:1.15rem;background:linear-gradient(135deg,var(--green),var(--green-d));color:#000;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:.2em;text-transform:uppercase;border:none;border-radius:14px;cursor:pointer;box-shadow:0 6px 24px rgba(34,211,145,.28),inset 0 1px 0 rgba(255,255,255,.2);transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
+.wp-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transition:left .6s ease}
+.wp-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(34,211,145,.45)}
+.wp-btn:hover::before{left:100%}
+.wp-btn:active{transform:translateY(0)}
+
 /* ═══ MOBILE ═══ */
 @media (max-width:380px){
   .liters input{font-size:38px;width:110px}
@@ -233,6 +255,77 @@ body>*{position:relative;z-index:1}
   .phase-title{font-size:16px}
   .single-dose{font-size:20px}
 }
+
+/* ═══ BTN TABLA IMPRIMIBLE ═══ */
+.btn-ptable{width:100%;padding:.85rem;margin-top:.75rem;background:rgba(255,255,255,.03);color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.22em;text-transform:uppercase;border:1px dashed var(--border2);border-radius:14px;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.btn-ptable:hover{background:rgba(255,255,255,.07);border-color:var(--text2);color:var(--text2);border-style:solid}
+.btn-ptable:active{transform:translateY(1px)}
+
+/* ═══ SETUP SCREENS ═══ */
+.sscreen{position:fixed;inset:0;background:#000;display:none;align-items:center;justify-content:center;flex-direction:column;z-index:8000;padding:1.5rem 1.2rem;overflow:hidden}
+.sscreen.active{display:flex;animation:ssIn .55s cubic-bezier(.23,1,.32,1) both}
+@keyframes ssIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.sscreen-canvas{position:absolute;inset:0;pointer-events:none}
+.sscreen-wrap{position:relative;z-index:2;width:100%;max-width:460px;display:flex;flex-direction:column;align-items:center;gap:1.4rem}
+.sscreen-pre{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:.3em;text-transform:uppercase;opacity:.6;margin-bottom:-.6rem}
+/* --- Litros --- */
+.sl-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(26px,7vw,40px);letter-spacing:.12em;text-transform:uppercase;text-align:center;color:#fff;line-height:1.1;text-shadow:0 0 40px rgba(34,211,145,.5),0 0 80px rgba(34,211,145,.15)}
+.sl-input-wrap{width:100%;background:rgba(34,211,145,.04);border:2px solid rgba(34,211,145,.25);border-radius:18px;padding:1.2rem 1rem;display:flex;align-items:center;justify-content:center;gap:.8rem;transition:all .3s;position:relative;overflow:hidden}
+.sl-input-wrap::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(34,211,145,.06),transparent 60%);pointer-events:none}
+.sl-input-wrap:focus-within{border-color:var(--green);box-shadow:0 0 0 3px rgba(34,211,145,.1),0 0 50px rgba(34,211,145,.15)}
+.sl-input{background:transparent;border:none;font-family:'Barlow Condensed',sans-serif;font-size:clamp(56px,14vw,86px);font-weight:900;color:var(--green);text-align:center;width:220px;-moz-appearance:textfield;text-shadow:0 0 30px rgba(34,211,145,.45);caret-color:var(--green)}
+.sl-input:focus{outline:none}
+.sl-input::placeholder{color:rgba(34,211,145,.18)}
+.sl-input::-webkit-inner-spin-button,.sl-input::-webkit-outer-spin-button{-webkit-appearance:none}
+.sl-unit{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.2em;text-transform:uppercase;color:rgba(34,211,145,.4)}
+.sl-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--dim);margin-top:-.4rem}
+.sustrato-btns{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;width:100%}
+.sustrato-btn{padding:1rem .5rem .9rem;border-radius:14px;border:2px solid var(--border);background:rgba(255,255,255,.03);cursor:pointer;text-align:center;transition:all .35s cubic-bezier(.23,1,.32,1);display:flex;flex-direction:column;align-items:center;gap:.35rem}
+.sb-icon{font-size:30px;line-height:1;transition:filter .3s}
+.sb-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);transition:color .3s;display:block}
+.sb-desc{font-size:9px;letter-spacing:.1em;color:var(--dim);display:block}
+.sustrato-btn:hover{transform:translateY(-2px)}
+.sustrato-btn.sel-tierra{border-color:#c8a84b;background:rgba(200,168,75,.06);box-shadow:0 0 0 1px #c8a84b,0 4px 24px rgba(200,168,75,.22)}
+.sustrato-btn.sel-tierra .sb-name{color:#c8a84b;text-shadow:0 0 12px rgba(200,168,75,.6)}
+.sustrato-btn.sel-tierra .sb-icon{filter:drop-shadow(0 0 10px rgba(200,168,75,.9))}
+.sustrato-btn.sel-coco{border-color:#4dd0e1;background:rgba(77,208,225,.06);box-shadow:0 0 0 1px #4dd0e1,0 4px 24px rgba(77,208,225,.22)}
+.sustrato-btn.sel-coco .sb-name{color:#4dd0e1;text-shadow:0 0 12px rgba(77,208,225,.6)}
+.sustrato-btn.sel-coco .sb-icon{filter:drop-shadow(0 0 10px rgba(77,208,225,.9))}
+/* --- PRO levels --- */
+.sp-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(26px,7vw,40px);letter-spacing:.12em;text-transform:uppercase;text-align:center;color:#fff;line-height:1.1;text-shadow:0 0 40px rgba(255,77,143,.4),0 0 80px rgba(34,211,145,.1)}
+.pro-btns{display:flex;flex-direction:column;gap:.6rem;width:100%}
+.pro-btn{padding:1rem 1.1rem;border-radius:14px;border:2px solid var(--border);background:rgba(255,255,255,.03);cursor:pointer;text-align:left;transition:all .35s cubic-bezier(.23,1,.32,1);display:flex;align-items:center;gap:1rem;position:relative;overflow:hidden}
+.pro-btn::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px;opacity:0;transition:all .3s}
+.pro-btn-label{flex:1}
+.pro-btn-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;transition:color .3s,text-shadow .3s}
+.pro-btn-desc{font-size:10px;letter-spacing:.06em;color:var(--dim);display:block;margin-top:.2rem}
+.pro-btn-lvl{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;padding:4px 9px;border-radius:6px;border:1px solid var(--border2);color:var(--dim);transition:all .3s;white-space:nowrap;flex-shrink:0}
+.pro-btn:hover{transform:translateX(3px)}
+.pro-btn.sel-basic{border-color:#c8a84b;background:rgba(200,168,75,.06);box-shadow:0 0 0 1px #c8a84b,0 4px 20px rgba(200,168,75,.2)}
+.pro-btn.sel-basic::after{background:#c8a84b;box-shadow:0 0 10px #c8a84b;opacity:1}
+.pro-btn.sel-basic .pro-btn-name{color:#c8a84b;text-shadow:0 0 12px rgba(200,168,75,.5)}
+.pro-btn.sel-basic .pro-btn-lvl{border-color:#c8a84b;color:#c8a84b;background:rgba(200,168,75,.1);box-shadow:0 0 8px rgba(200,168,75,.3)}
+.pro-btn.sel-pro{border-color:var(--green);background:rgba(34,211,145,.06);box-shadow:0 0 0 1px var(--green),0 4px 20px rgba(34,211,145,.2)}
+.pro-btn.sel-pro::after{background:var(--green);box-shadow:0 0 10px var(--green);opacity:1}
+.pro-btn.sel-pro .pro-btn-name{color:var(--green);text-shadow:0 0 12px rgba(34,211,145,.5)}
+.pro-btn.sel-pro .pro-btn-lvl{border-color:var(--green);color:var(--green);background:rgba(34,211,145,.1);box-shadow:0 0 8px rgba(34,211,145,.3)}
+.pro-btn.sel-sugar{border-color:var(--sugar);background:rgba(255,77,143,.06);box-shadow:0 0 0 1px var(--sugar),0 4px 20px rgba(255,77,143,.2)}
+.pro-btn.sel-sugar::after{background:var(--sugar);box-shadow:0 0 10px var(--sugar);opacity:1}
+.pro-btn.sel-sugar .pro-btn-name{color:var(--sugar);text-shadow:0 0 12px rgba(255,77,143,.5)}
+.pro-btn.sel-sugar .pro-btn-lvl{border-color:var(--sugar);color:var(--sugar);background:rgba(255,77,143,.1);box-shadow:0 0 8px rgba(255,77,143,.3)}
+/* --- Continue button --- */
+.screen-continue{width:100%;padding:1.05rem;background:linear-gradient(135deg,var(--green),var(--green-d));color:#000;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:.22em;text-transform:uppercase;border:none;border-radius:14px;cursor:pointer;box-shadow:0 6px 24px rgba(34,211,145,.2);transition:all .3s}
+.screen-continue:disabled{opacity:.2;cursor:not-allowed;box-shadow:none;background:rgba(255,255,255,.08);color:var(--muted)}
+.screen-continue:not(:disabled):hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(34,211,145,.4)}
+.screen-continue:not(:disabled):active{transform:translateY(0)}
+/* --- pH in table --- */
+.week-ph{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:2px 8px;border:1px solid var(--border2);border-radius:4px}
+.week-ph b{color:#80deea;font-weight:900}
+.single-ph{padding:.7rem 1.3rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.04);font-family:'Barlow',sans-serif;font-size:12px;color:var(--muted)}
+.single-ph-val{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;color:#80deea;letter-spacing:.04em}
+.gnote.g-ph{border-color:#80deea}
+.gnote.g-ph .gnote-icon{color:#80deea}
+.gnote.g-ph .gnote-title{color:#b2ebf2}
 </style>
 </head>
 <body>
@@ -249,6 +342,66 @@ body>*{position:relative;z-index:1}
   </div>
   <button class="splash-btn" onclick="startApp()">Entrar</button>
   <div class="splash-reg">&reg; Marca registrada · 33PRO</div>
+</div>
+
+<!-- ═══ SCREEN: LITROS ═══ -->
+<div id="screen-litros" class="sscreen">
+  <canvas class="sscreen-canvas" id="sl-canvas"></canvas>
+  <div class="sscreen-wrap">
+    <div class="sscreen-pre" style="color:var(--green)">33PRO · Calculadora</div>
+    <div class="sl-title">¿Cu&aacute;ntos litros<br>tienes?</div>
+    <div class="sl-input-wrap">
+      <input class="sl-input" type="number" id="sl-litros" min="1" max="10000" placeholder="0" oninput="checkSLContinue()" />
+      <span class="sl-unit">L</span>
+    </div>
+    <div class="sl-label">Selecciona tu sustrato</div>
+    <div class="sustrato-btns">
+      <button class="sustrato-btn" id="sb-tierra" onclick="selectSustrato('tierra')">
+        <span class="sb-icon">🟫</span>
+        <span class="sb-name">Tierra</span>
+        <span class="sb-desc">pH 6.1 – 6.8</span>
+      </button>
+      <button class="sustrato-btn" id="sb-coco" onclick="selectSustrato('coco')">
+        <span class="sb-icon">🥥</span>
+        <span class="sb-name">Coco</span>
+        <span class="sb-desc">pH 5.7 – 6.4</span>
+      </button>
+    </div>
+    <button class="screen-continue" id="sl-continue" disabled onclick="goToProScreen()">Continuar &rarr;</button>
+  </div>
+</div>
+
+<!-- ═══ SCREEN: NIVEL PRO ═══ -->
+<div id="screen-pro" class="sscreen">
+  <canvas class="sscreen-canvas" id="sp-canvas"></canvas>
+  <div class="sscreen-wrap">
+    <div class="sscreen-pre" style="color:var(--sugar)">33PRO · Nivel</div>
+    <div class="sp-title">¿Cu&aacute;l es tu<br>nivel PRO?</div>
+    <div class="pro-btns">
+      <button class="pro-btn" id="pb-basic" onclick="selectProLevel('basic')">
+        <div class="pro-btn-label">
+          <span class="pro-btn-name">Basic</span>
+          <span class="pro-btn-desc">Nivel 1 &middot; Nutrici&oacute;n esencial</span>
+        </div>
+        <span class="pro-btn-lvl">LVL I</span>
+      </button>
+      <button class="pro-btn" id="pb-pro" onclick="selectProLevel('pro')">
+        <div class="pro-btn-label">
+          <span class="pro-btn-name">Pro</span>
+          <span class="pro-btn-desc">Nivel 2 &middot; M&aacute;ximo rendimiento</span>
+        </div>
+        <span class="pro-btn-lvl">LVL II</span>
+      </button>
+      <button class="pro-btn" id="pb-sugar" onclick="selectProLevel('sugar')">
+        <div class="pro-btn-label">
+          <span class="pro-btn-name">Sugar Pro</span>
+          <span class="pro-btn-desc">Nivel 3 &middot; PRO LEVEL M&Aacute;XIMO &#9889;</span>
+        </div>
+        <span class="pro-btn-lvl">LVL III</span>
+      </button>
+    </div>
+    <button class="screen-continue" id="sp-continue" disabled onclick="goToTable()">Calcular mi tabla &rarr;</button>
+  </div>
 </div>
 
 <div id="app" style="display:none">
@@ -307,6 +460,8 @@ body>*{position:relative;z-index:1}
     <div id="view-full"></div>
     <div id="view-week" style="display:none"></div>
 
+    <button class="btn-ptable" onclick="generatePrintTable()">&#128424; Generar tabla imprimible</button>
+
     <div class="global-notes">
       <div class="gnote g-mic">
         <span class="gnote-icon">🍄</span>
@@ -322,6 +477,13 @@ body>*{position:relative;z-index:1}
           Corrector <b>30 ml/100L</b> 1&times;sem &middot; Revitalizador <b>50 ml/100L</b> 1 vez &middot; Cal-Mag <b>10 ml/100L</b> todos los riegos &middot; No usar las 2 &uacute;ltimas semanas.
         </div>
       </div>
+      <div class="gnote g-ph">
+        <span class="gnote-icon">&#128167;</span>
+        <div class="gnote-body">
+          <span class="gnote-title">pH del agua</span>
+          Var&iacute;a ligeramente el pH entre riegos para mejorar la absorci&oacute;n. En coco, realiza un riego con drenaje cada 7-10 d&iacute;as.
+        </div>
+      </div>
     </div>
 
     <div class="footer">Aqu&iacute; los n&uacute;meros mandan &middot; <span class="footer-brand">33PRO</span> &middot; 2026</div>
@@ -334,6 +496,23 @@ body>*{position:relative;z-index:1}
     <div class="calc-hud-title">Calculando</div>
     <div class="calc-hud-formula" id="calcFormula">&nbsp;</div>
     <div class="calc-hud-out" id="calcOut">0<span class="unit">L</span></div>
+  </div>
+</div>
+
+<div id="welcomePopup">
+  <div class="wp-box">
+    <div class="wp-title">&#9889; TU TABLA EST&Aacute; LISTA</div>
+    <div class="wp-sub" id="wpSub">&mdash;</div>
+    <div class="wp-sep"></div>
+    <div class="wp-quote">33PRO te da las herramientas. Los resultados los consigues t&uacute;.</div>
+    <div class="wp-section-label">&#129514; PROGRAMA CALCULADO. AHORA DEPENDE DE TI.</div>
+    <div class="wp-points">
+      <div class="wp-point"><span class="wp-arrow">&rarr;</span><span class="wp-point-text"><b>pH en cada riego, siempre.</b> Es la diferencia entre una planta que absorbe y una que bloquea.</span></div>
+      <div class="wp-point"><span class="wp-arrow">&rarr;</span><span class="wp-point-text"><b>Dale agua limpia de vez en cuando.</b> Cada 3 riegos con fertilizante o una vez a la semana &mdash; t&uacute; decides. Tu sustrato lo necesita para resetear sales.</span></div>
+      <div class="wp-point"><span class="wp-arrow">&rarr;</span><span class="wp-point-text"><b>Observa antes de actuar.</b> La tabla es tu punto de partida, tu planta es quien manda.</span></div>
+    </div>
+    <div class="wp-final">Los mejores nutrientes no sirven de nada sin el mejor cultivador.</div>
+    <button class="wp-btn" onclick="closeWelcome()">ESTOY LISTO &mdash; VER MI TABLA &#9889;</button>
   </div>
 </div>
 
@@ -362,15 +541,19 @@ const ALL_PRODS=[
   {key:'sugar',name:'Sugar Pro',unit:'gr',cls:'p-sugar',icon:'🌷',kit:'sugar'}
 ];
 const KIT_LEVELS={basic:['basic'],pro:['basic','pro'],sugar:['basic','pro','sugar']};
+const PH={
+  tierra:{C:['6.1-6.3','6.2-6.4'],F:['6.2-6.4','6.3-6.5','6.3-6.5','6.4-6.6','6.4-6.6','6.5-6.7','6.5-6.7','6.6-6.8']},
+  coco:{C:['5.7-5.9','5.8-6.0'],F:['5.8-6.0','5.9-6.1','5.9-6.1','6.0-6.2','6.0-6.2','6.1-6.3','6.1-6.3','6.2-6.4']}
+};
 
 let mode='pro', tab='full', wIdx=0, xCrec=false, xFlor=false;
+let sustrato=null, particleTimer=null, welcomeShown=false;
 
 function startApp(){
   document.getElementById('splash').classList.add('fade-out');
   setTimeout(()=>{
     document.getElementById('splash').style.display='none';
-    document.getElementById('app').style.display='block';
-    render();
+    showScreen('litros');
   },600);
 }
 
@@ -434,7 +617,7 @@ function renderFull(){
     }
     const act=pl.filter(p=>r[p.key]!==null);
     if(!act.length)return;
-    h+='<div class="week '+(isF?'w-flor':'w-crec')+'"><div class="week-head"><span class="week-num">S'+r._n+'</span>'+(r._x?'<span class="week-extra">extra</span>':'')+'<span class="week-ec">EC <b>'+r.ec+'</b></span></div><div class="chips">';
+    h+='<div class="week '+(isF?'w-flor':'w-crec')+'"><div class="week-head"><span class="week-num">S'+r._n+'</span>'+(r._x?'<span class="week-extra">extra</span>':'')+'<span class="week-ec">EC <b>'+r.ec+'</b></span><span class="week-ph">pH <b>'+getPH(r)+'</b></span></div><div class="chips">';
     act.forEach((p,i)=>{h+='<span class="chip '+p.cls+'" style="animation-delay:'+(i*30)+'ms"><span class="chip-icon">'+p.icon+'</span><span class="chip-name">'+p.name+'</span><span class="chip-dose">'+fmt(calc(r[p.key],l),p.unit)+'</span></span>';});
     h+='</div>';
     const notes=weekNotes(r);
@@ -451,8 +634,8 @@ function renderWeek(){
   if(wIdx<0)wIdx=0;
   const r=w[wIdx],isF=r.fase==='F';
   const act=pl.filter(p=>r[p.key]!==null);
-  let h='<div class="wnav"><button onclick="prevWeek()" '+(wIdx===0?'disabled':'')+'>&lsaquo;</button><div class="wnav-label">'+(isF?'🌸 Floración':'🌱 Crecimiento')+' · S'+r._n+(r._x?' · extra':'')+'<small>'+(wIdx+1)+' / '+w.length+' · EC '+r.ec+'</small></div><button onclick="nextWeek('+w.length+')" '+(wIdx===w.length-1?'disabled':'')+'>&rsaquo;</button></div>';
-  h+='<div class="single"><div class="single-head '+(isF?'sh-flor':'sh-crec')+'"><div class="single-title">'+(isF?'Floración':'Crecimiento')+' · Semana '+r._n+'</div><div class="single-badge">'+l+'L</div></div>';
+  let h='<div class="wnav"><button onclick="prevWeek()" '+(wIdx===0?'disabled':'')+'>&lsaquo;</button><div class="wnav-label">'+(isF?'🌸 Floración':'🌱 Crecimiento')+' · S'+r._n+(r._x?' · extra':'')+'<small>'+(wIdx+1)+' / '+w.length+' · EC '+r.ec+' · pH '+getPH(r)+'</small></div><button onclick="nextWeek('+w.length+')" '+(wIdx===w.length-1?'disabled':'')+'>&rsaquo;</button></div>';
+  h+='<div class="single"><div class="single-head '+(isF?'sh-flor':'sh-crec')+'"><div class="single-title">'+(isF?'Floración':'Crecimiento')+' · Semana '+r._n+'</div><div class="single-badge">'+l+'L</div></div><div class="single-ph">&#128167; pH recomendado<span class="single-ph-val">'+getPH(r)+'</span></div>';
   if(!act.length){
     h+='<div style="padding:2rem;text-align:center;color:var(--muted);font-size:12px;letter-spacing:.1em;text-transform:uppercase">Sin productos</div>';
   } else {
@@ -534,9 +717,245 @@ function fireCalc(){
 
   setTimeout(()=>{
     fx.classList.remove('show');
-    render();
-    window.scrollTo({top:document.querySelector('.tabs').offsetTop-20,behavior:'smooth'});
+    if(!welcomeShown){
+      showWelcomePopup();
+    } else {
+      render();
+      window.scrollTo({top:document.querySelector('.tabs').offsetTop-20,behavior:'smooth'});
+    }
   },2800);
+}
+
+function showWelcomePopup(){
+  const modeNames={basic:'BASIC',pro:'PRO',sugar:'SUGAR PRO'};
+  const l=getL();
+  const sus=(sustrato||'tierra').toUpperCase();
+  document.getElementById('wpSub').textContent=l+'L \u00B7 '+(modeNames[mode]||mode.toUpperCase())+' \u00B7 '+sus;
+  document.getElementById('welcomePopup').classList.add('show');
+}
+function closeWelcome(){
+  welcomeShown=true;
+  document.getElementById('welcomePopup').classList.remove('show');
+  render();
+  window.scrollTo({top:document.querySelector('.tabs').offsetTop-20,behavior:'smooth'});
+}
+
+/* ═══ SETUP SCREENS ═══ */
+function getPH(w){
+  const s=sustrato||'tierra';
+  const a=PH[s][w.fase];
+  return a[Math.min(w._n-1,a.length-1)];
+}
+
+function startParticles(cv,c1,c2){
+  if(particleTimer)cancelAnimationFrame(particleTimer);
+  cv.width=window.innerWidth;cv.height=window.innerHeight;
+  const ctx=cv.getContext('2d');
+  const mk=()=>({
+    x:Math.random()*cv.width,y:cv.height+Math.random()*60,
+    vx:(Math.random()-.5)*.7,vy:.5+Math.random()*1.5,
+    r:.8+Math.random()*2.4,col:Math.random()>.5?c1:c2,
+    life:0,max:100+Math.random()*170
+  });
+  const pts=Array.from({length:55},mk);
+  function draw(){
+    particleTimer=requestAnimationFrame(draw);
+    ctx.fillStyle='rgba(0,0,0,0.13)';ctx.fillRect(0,0,cv.width,cv.height);
+    pts.forEach((p,i)=>{
+      p.y-=p.vy;p.x+=p.vx+Math.sin(p.life*.05)*.5;p.life++;
+      if(p.y<-10||p.life>p.max){pts[i]=mk();return;}
+      const t=p.life/p.max;
+      const al=t<.2?t/.2:t>.75?(1-t)/.25:1;
+      ctx.globalAlpha=al*.8;ctx.fillStyle=p.col;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
+    });
+    ctx.globalAlpha=1;
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);
+        if(d<85){
+          ctx.strokeStyle=c1;ctx.globalAlpha=(1-d/85)*.07;
+          ctx.lineWidth=.5;ctx.beginPath();
+          ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.stroke();
+        }
+      }
+    }
+    ctx.globalAlpha=1;
+  }
+  draw();
+}
+
+function showScreen(name){
+  document.getElementById('screen-litros').classList.remove('active');
+  document.getElementById('screen-pro').classList.remove('active');
+  if(name==='litros'){
+    document.getElementById('screen-litros').classList.add('active');
+    startParticles(document.getElementById('sl-canvas'),'#22D391','#c8a84b');
+    setTimeout(()=>{const el=document.getElementById('sl-litros');if(el)el.focus();},120);
+  } else if(name==='pro'){
+    document.getElementById('screen-pro').classList.add('active');
+    startParticles(document.getElementById('sp-canvas'),'#FF4D8F','#22D391');
+  }
+}
+
+function selectSustrato(type){
+  sustrato=type;
+  document.querySelectorAll('.sustrato-btn').forEach(b=>{
+    b.classList.remove('sel-tierra','sel-coco');
+  });
+  document.getElementById('sb-'+type).classList.add('sel-'+type);
+  checkSLContinue();
+}
+
+function checkSLContinue(){
+  const l=parseFloat(document.getElementById('sl-litros').value);
+  document.getElementById('sl-continue').disabled=!(l>0&&sustrato!==null);
+}
+
+function goToProScreen(){
+  showScreen('pro');
+}
+
+function selectProLevel(lvl){
+  mode=lvl;
+  document.querySelectorAll('.pro-btn').forEach(b=>{
+    b.classList.remove('sel-basic','sel-pro','sel-sugar');
+  });
+  document.getElementById('pb-'+lvl).classList.add('sel-'+lvl);
+  document.getElementById('sp-continue').disabled=false;
+}
+
+function goToTable(){
+  if(particleTimer){cancelAnimationFrame(particleTimer);particleTimer=null;}
+  document.getElementById('litros').value=document.getElementById('sl-litros').value;
+  document.querySelectorAll('.mode').forEach(el=>el.classList.toggle('active',el.dataset.mode===mode));
+  document.getElementById('screen-litros').classList.remove('active');
+  document.getElementById('screen-pro').classList.remove('active');
+  document.getElementById('app').style.display='block';
+  fireCalc();
+}
+
+function generatePrintTable(){
+  const l=getL(),weeks=buildWeeks();
+  const showS=mode!=='basic',showC=mode!=='basic',showSug=mode==='sugar';
+  const COLS=[
+    {key:'crec', name:'Crecimiento',   unit:'ml',sec:'basic'},
+    {key:'flor', name:'Floraci\u00F3n',unit:'ml',sec:'basic'},
+    {key:'plata',name:'Plata Pro',     unit:'ml',sec:'basic'},
+    {key:'pk',   name:'PK Pro',        unit:'gr', sec:'basic'},
+    {key:'comp', name:'Compactor Pro', unit:'gr', sec:'basic'},
+    {key:'silic',name:'Silic Pro',     unit:'ml',sec:'pro',  show:showS},
+    {key:'co2',  name:'CO2 Pro Led',   unit:'ml',sec:'pro',  show:showC},
+    {key:'sugar',name:'Sugar Pro',     unit:'gr', sec:'pro',  show:showSug}
+  ].filter(c=>c.show!==false);
+  const bCols=COLS.filter(c=>c.sec==='basic'),pCols=COLS.filter(c=>c.sec==='pro');
+  const TC=COLS.length+4;
+  const logoSrc=(document.querySelector('.header-logo')||{}).src||'';
+  const fv=(v,u)=>{if(v===null)return null;const val=(v/BASE)*l;const s=val<1?val.toFixed(2):(val%1===0?val.toFixed(0):val.toFixed(1));return s+' '+u;};
+  const fcm=v=>{const val=(v/100)*l;return val%1===0?val.toFixed(0):val.toFixed(1);};
+  const modeL={basic:'Basic',pro:'Pro',sugar:'Sugar Pro'}[mode];
+  const modeBg=mode==='basic'?'#c8a84b':mode==='pro'?'#22D391':'#FF4D8F';
+  const modeFg=mode==='sugar'?'#fff':'#000';
+  let tb='',lf='';
+  weeks.forEach(w=>{
+    const isF=w.fase==='F';
+    if(w.fase!==lf){
+      tb+='<tr class="'+(isF?'ph-f':'ph-c')+'"><td colspan="'+TC+'">'+(isF?'&#127800; FLORACI\u00D3N 12H':'&#127793; CRECIMIENTO 18H')+'</td></tr>';
+      lf=w.fase;
+    }
+    const isC1=w.fase==='C'&&w._n===1,isC2=w.fase==='C'&&w._n===2;
+    tb+='<tr class="dr '+(isF?'df':'dc')+(w._x?' dx':'')+'"><td class="cs">S'+w._n+(w._x?' <span class="xt">+</span>':'')+'</td>';
+    COLS.forEach(col=>{
+      const val=fv(w[col.key],col.unit);
+      tb+=val===null?'<td class="ce">\u2014</td>':'<td class="cv c-'+col.key+'">'+val+'</td>';
+    });
+    tb+=isC1?'<td class="cm">0,25 gr<br><span class="sm">1\u00AA\u00B7trasplante</span></td>':isC2?'<td class="cm">0,25 gr<br><span class="sm">2\u00AA\u00B715 d\u00EDas</span></td>':'<td class="ce">\u2014</td>';
+    tb+='<td class="cec">'+w.ec+'</td><td class="cph">'+getPH(w)+'</td></tr>';
+  });
+  const sr='<th rowspan="2" class="th-sem">SEM</th>'+(bCols.length?'<th colspan="'+bCols.length+'" class="sec-b">BASIC</th>':'')+(pCols.length?'<th colspan="'+pCols.length+'" class="sec-p">PRO</th>':'')+'<th rowspan="2" class="th-mic">MICOR.</th><th rowspan="2" class="th-ec">EC</th><th rowspan="2" class="th-ph">pH</th>';
+  const cr=COLS.map(c=>'<th class="th-'+c.key+'">'+c.name+'<br><span class="tu">'+c.unit+'</span></th>').join('');
+  const css='*{box-sizing:border-box;margin:0;padding:0}'
+    +'html,body{background:#000;color:#fff;font-family:Barlow,sans-serif;font-weight:500;padding:1rem 1.2rem 1.6rem;-webkit-font-smoothing:antialiased}'
+    +'.btn-print{position:fixed;bottom:1.2rem;right:1.2rem;padding:.8rem 1.5rem;background:linear-gradient(135deg,#22D391,#159968);color:#000;font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:12px;letter-spacing:.2em;text-transform:uppercase;border:none;border-radius:11px;cursor:pointer;box-shadow:0 4px 16px rgba(34,211,145,.35);z-index:999;transition:transform .2s}'
+    +'.btn-print:hover{transform:translateY(-2px)}'
+    +'.phead{display:flex;align-items:center;gap:1rem;padding-bottom:.8rem;border-bottom:2px solid #1a1a1a;margin-bottom:1rem}'
+    +'.plogo{height:38px;width:auto}'
+    +'.ptitles{flex:1}'
+    +'.ptitle{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:30px;letter-spacing:.2em;text-transform:uppercase;color:#22D391;line-height:1}'
+    +'.psub{font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#555;margin-top:3px}'
+    +'.pbadge{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:4px 12px;border-radius:6px}'
+    +'.twrap{overflow-x:auto;margin-bottom:1rem}'
+    +'table{width:100%;border-collapse:collapse;font-family:"Barlow Condensed",sans-serif}'
+    +'tr.sr th{font-size:9px;font-weight:900;letter-spacing:.25em;text-transform:uppercase;padding:5px 6px;border:1px solid #1a1a1a;text-align:center}'
+    +'.th-sem,.th-mic,.th-ec{background:#080808;color:#555;font-size:9px;vertical-align:middle}'
+    +'.th-ph{background:#0a1a05;color:#b5f23a;font-size:9px;vertical-align:middle}'
+    +'.sec-b{background:#111;color:#c8a84b;border-bottom:2px solid #c8a84b}'
+    +'.sec-p{background:#060606;color:#22D391;border-bottom:2px solid #22D391;border-left:2px solid #2a2a2a}'
+    +'tr.cr th{padding:6px 5px;font-size:9px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;text-align:center;border:1px solid #1a1a1a;white-space:nowrap;line-height:1.3}'
+    +'.tu{font-weight:400;font-size:8px;opacity:.65;text-transform:lowercase;letter-spacing:.04em}'
+    +'.th-crec{background:#041a30;color:#5ba3e0}.th-flor{background:#230412;color:#e07ab0}'
+    +'.th-plata{background:#0e0e0e;color:#a0a0b0}.th-pk{background:#180c00;color:#d4844a}'
+    +'.th-comp{background:#001418;color:#50b8d0}.th-silic{background:#110028;color:#b878e0}'
+    +'.th-co2{background:#000d04;color:#5dc888}.th-sugar{background:#1a000d;color:#e07898}'
+    +'.ph-c td,.ph-f td{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:11px;letter-spacing:.25em;text-transform:uppercase;padding:5px 10px;border:1px solid #222;text-align:left}'
+    +'.ph-c td{background:#060f06;color:#4caf50;border-left:4px solid #2e7d32}'
+    +'.ph-f td{background:#0f0606;color:#ef5350;border-left:4px solid #c62828}'
+    +'.dr td{border:1px solid #111;background:#030303}'
+    +'.dr:hover td{background:#0a0a0a}.dx td{opacity:.7}'
+    +'td.cs{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:13px;letter-spacing:.06em;padding:5px 10px;text-align:left;white-space:nowrap;min-width:36px}'
+    +'.dc td.cs{color:#22D391}.df td.cs{color:#FF4D8F}'
+    +'td.cv{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:13px;padding:5px 6px;text-align:center}'
+    +'td.ce{color:#222;font-size:11px;text-align:center;padding:5px 6px}'
+    +'.c-crec{color:#5ba3e0}.c-flor{color:#e07ab0}.c-plata{color:#a8a8b8}'
+    +'.c-pk{color:#d4844a}.c-comp{color:#50b8d0}.c-silic{color:#b878e0}'
+    +'.c-co2{color:#5dc888}.c-sugar{color:#FF4D8F}'
+    +'td.cm{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:11px;color:#909090;text-align:center;padding:4px 6px;line-height:1.3}'
+    +'.sm{font-size:9px;color:#555;display:block}'
+    +'td.cec{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:14px;color:#d4a020;text-align:center;padding:5px 6px}'
+    +'td.cph{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:12px;color:#b5f23a;text-align:center;padding:5px 6px}'
+    +'.xt{background:#c8a84b;color:#000;border-radius:3px;padding:0 3px;font-size:8px;vertical-align:middle}'
+    +'.notes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.7rem;margin-bottom:.9rem}'
+    +'.note{background:#070707;border-radius:8px;padding:.75rem .9rem;border-left:3px solid}'
+    +'.n-mic{border-color:#b478ff}.n-cal{border-color:#64c8ff}.n-ph{border-color:#b5f23a}'
+    +'.ntitle{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.3rem}'
+    +'.n-mic .ntitle{color:#d4b8ff}.n-cal .ntitle{color:#a8daff}.n-ph .ntitle{color:#b5f23a}'
+    +'.nbody{font-size:11px;line-height:1.55;color:#777}'
+    +'.nbody b{color:#c8a84b;font-weight:900}.nwarn{color:#e06030;font-size:10px}'
+    +'.pfooter{text-align:center;font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:#2a2a2a;padding-top:.7rem;border-top:1px solid #0f0f0f}'
+    +'@media print{.btn-print{display:none!important}body{padding:.3cm}*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}@page{size:A4 landscape;margin:.5cm}}';
+  const html='<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">'
+    +'<title>Tabla '+l+'L \u00B7 33PRO</title>'
+    +'<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">'
+    +'<style>'+css+'<\/style><\/head><body>'
+    +'<button class="btn-print" onclick="window.print()">&#128424; Imprimir / Guardar PDF</button>'
+    +'<div class="phead">'+(logoSrc?'<img class="plogo" src="'+logoSrc+'" alt="33PRO">':'')
+    +'<div class="ptitles"><div class="ptitle">TABLA '+l+'L</div>'
+    +'<div class="psub">Tabla nutricional \u00B7 Modo '+modeL+'</div></div>'
+    +'<span class="pbadge" style="background:'+modeBg+';color:'+modeFg+'">'+modeL+'</span></div>'
+    +'<div class="twrap"><table><thead>'
+    +'<tr class="sr">'+sr+'</tr>'
+    +'<tr class="cr">'+cr+'</tr>'
+    +'</thead><tbody>'+tb+'</tbody></table></div>'
+    +'<div class="notes">'
+    +'<div class="note n-mic"><div class="ntitle">&#127812; Micorrizas &amp; Tricoderma</div>'
+    +'<div class="nbody">Dosis fija <b>0,25 gr/maceta</b><br>'
+    +'1\u00AA dosis en trasplante \u00B7 2\u00AA dosis a los 15 d\u00EDas<br>'
+    +'<span class="nwarn">Regar solo agua sin regular pH el d\u00EDa de aplicaci\u00F3n</span></div></div>'
+    +'<div class="note n-cal"><div class="ntitle">&#128167; Cal-Mag 3 en 1</div>'
+    +'<div class="nbody">Corrector <b>'+fcm(30)+' ml</b> \u00B7 1 vez por semana<br>'
+    +'Revitalizador <b>'+fcm(50)+' ml</b> \u00B7 1 sola vez<br>'
+    +'Cal-Mag <b>'+fcm(10)+' ml</b> \u00B7 todos los riegos<br>'
+    +'<span class="nwarn">No usar las 2 \u00FAltimas semanas</span></div></div>'
+    +'<div class="note n-ph"><div class="ntitle">&#127810; pH \u00B7 '+(sustrato==='coco'?'Coco':'Tierra')+'</div>'
+    +'<div class="nbody">Los rangos pH indicados son orientativos por semana.<br>'
+    +'Var\u00EDa el pH entre riegos para mejor absorci\u00F3n.<br>'
+    +'<span class="nwarn">En coco, riego con drenaje cada 7\u201310 d\u00EDas.</span></div></div>'
+    +'</div>'
+    +'<div class="pfooter">Tabla generada \u00B7 33PRO \u00B7 Calculadora Nutricional \u00AE \u00B7 2026</div>'
+    +'<\/body><\/html>';
+  const win=window.open('','_blank','width=1100,height=760,scrollbars=yes,resizable=yes');
+  if(win){win.document.write(html);win.document.close();}
+  else{alert('Por favor, permite las ventanas emergentes para generar la tabla.');}
 }
 
 render();
